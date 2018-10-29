@@ -1,0 +1,15 @@
+C:\Users\Laurence\source\repos\TodoReactApp\TodoReactApp\obj\Debug\netcoreapp2.1\TodoReactApp.csproj.CoreCompileInputs.cache
+C:\Users\Laurence\source\repos\TodoReactApp\TodoReactApp\obj\Debug\netcoreapp2.1\TodoReactApp.RazorAssemblyInfo.cache
+C:\Users\Laurence\source\repos\TodoReactApp\TodoReactApp\obj\Debug\netcoreapp2.1\TodoReactApp.RazorAssemblyInfo.cs
+C:\Users\Laurence\source\repos\TodoReactApp\TodoReactApp\obj\Debug\netcoreapp2.1\TodoReactApp.AssemblyInfoInputs.cache
+C:\Users\Laurence\source\repos\TodoReactApp\TodoReactApp\obj\Debug\netcoreapp2.1\TodoReactApp.AssemblyInfo.cs
+C:\Users\Laurence\source\repos\TodoReactApp\TodoReactApp\bin\Debug\netcoreapp2.1\TodoReactApp.deps.json
+C:\Users\Laurence\source\repos\TodoReactApp\TodoReactApp\bin\Debug\netcoreapp2.1\TodoReactApp.runtimeconfig.json
+C:\Users\Laurence\source\repos\TodoReactApp\TodoReactApp\bin\Debug\netcoreapp2.1\TodoReactApp.runtimeconfig.dev.json
+C:\Users\Laurence\source\repos\TodoReactApp\TodoReactApp\bin\Debug\netcoreapp2.1\TodoReactApp.dll
+C:\Users\Laurence\source\repos\TodoReactApp\TodoReactApp\bin\Debug\netcoreapp2.1\TodoReactApp.pdb
+C:\Users\Laurence\source\repos\TodoReactApp\TodoReactApp\obj\Debug\netcoreapp2.1\TodoReactApp.RazorTargetAssemblyInfo.cache
+C:\Users\Laurence\source\repos\TodoReactApp\TodoReactApp\obj\Debug\netcoreapp2.1\TodoReactApp.dll
+C:\Users\Laurence\source\repos\TodoReactApp\TodoReactApp\obj\Debug\netcoreapp2.1\TodoReactApp.pdb
+C:\Users\Laurence\source\repos\TodoReactApp\TodoReactApp\obj\Debug\netcoreapp2.1\TodoReactApp.csprojAssemblyReference.cache
+C:\Users\Laurence\source\repos\TodoReactApp\TodoReactApp\bin\Debug\netcoreapp2.1\TodoReactApp.xml

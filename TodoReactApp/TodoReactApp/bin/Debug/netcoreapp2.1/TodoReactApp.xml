@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>TodoReactApp</name>
+    </assembly>
+    <members>
+        <member name="M:TodoReactApp.Controllers.Helpers.Authenticator.AuthenticateUser(System.String,TodoReactApp.Models.TodoContext)">
+            <summary>
+                authenticates user with a token that is connected with the login email
+            </summary>
+            <param name="Email"></param>
+            <param name="Token"></param>
+            <param name="_context"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TodoReactApp.Controllers.Helpers.Login.Checkpassword(System.String,System.String)">
+            <summary>
+                checks if the combination of password and username match
+            </summary>
+            <param name="dbPassword"></param>
+            <param name="password"></param>
+            <returns>true or false</returns>
+        </member>
+        <member name="M:TodoReactApp.Controllers.Helpers.Register.HashPassword(System.String)">
+            <summary>
+            Hashes the given password
+            </summary>
+            <param name="password"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TodoReactApp.Controllers.Helpers.Register.RegisterUser(TodoReactApp.Models.UserInsertDto,TodoReactApp.Models.TodoContext)">
+            <summary>
+            registers user after all checks are done
+            </summary>
+            <param name="users"></param>
+            <param name="_context"></param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>
