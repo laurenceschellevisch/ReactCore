@@ -21,17 +21,19 @@ namespace TodoReactApp.Controllers
         }
 
 
-        [HttpPost("Gettodo")]
-        public async Task<IActionResult> Gettodos(GetidDTO email)
+        [HttpGet("Gettodo")]
+        public async Task<IActionResult> Gettodos(string email)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
-            if (string.IsNullOrEmpty(email.email))
+            if (string.IsNullOrEmpty(email))
                 return BadRequest();
 
-            User loggedinuser = (_context.Users.FirstOrDefault(x => x.Email == email.email));
-            var UserInfo = from u in _context.Todos where u.IdUser == loggedinuser.Id select new {u};
-            return Ok(new { UserInfo });
+            User loggedinuser = (_context.Users.FirstOrDefault(x => x.Email == email));
+           // var UserInfo = from u in _context.Todos where u.IdUser == loggedinuser.Id select u;
+            var UserInfo = (_context.Todos.Where(x => x.IdUser == loggedinuser.Id)).Select(x => new {x.Description,x.Id}).ToList();
+            return Ok(new {a=UserInfo});
+
         }
 
         // GET: api/Todoes
