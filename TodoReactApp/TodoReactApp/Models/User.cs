@@ -49,6 +49,10 @@ namespace TodoReactApp.Models
     {
         public string Token { get; set; }
     }
+    public class GetidDTO
+    {
+        public string email { get; set; }
+    }
     public class refreshAccessTokenDto
     {
         public string RefreshToken { get; set; }

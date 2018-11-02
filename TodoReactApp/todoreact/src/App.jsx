@@ -9,27 +9,29 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 
 import InviteUser from "./pages/InviteUser";
+import Home from "./pages/Home";
 
 class App extends Component {
-  state = {};
+	state = {};
 
-  render() {
-    return (
-      <React.Fragment>
-        <BrowserRouter>
-          <Switch>
-            {/* authentication pages */}
-            <Route exact path="/login" component={Login} />
-            <Route exact path="/register" render={props => <Register {...props} />} />
-            <PrivateRoute logout="true" path="/logout" component={Login} />
-            <Route render={props => <h1>Not Found</h1>} />
-          </Switch>
-        </BrowserRouter>
+	render() {
+		return (
+			<React.Fragment>
+				<BrowserRouter>
+					<Switch>
+						{/* authentication pages */}
+						<Route exact path="/login" component={Login} />
+						<Route exact path="/register" render={props => <Register {...props} />} />
+						<PrivateRoute logout="true" path="/logout" component={Login} />
+						<Route exact path="/Home" component={Home} />
+						<Route render={props => <h1>Not Found</h1>} />
+					</Switch>
+				</BrowserRouter>
 
-        <NotificationContainer />
-      </React.Fragment>
-    );
-  }
+				<NotificationContainer />
+			</React.Fragment>
+		);
+	}
 }
 
 export default App;

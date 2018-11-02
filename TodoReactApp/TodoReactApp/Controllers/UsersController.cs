@@ -111,7 +111,7 @@ namespace TodoReactApp.Controllers
             _context.SaveChanges();
             return Ok(new
             {
-                Id = logedinUser.Id,
+                email = logedinUser.Email,
                 token = logedinUser.Token,
                 refreshtoken = logedinUser.RefreshToken,
                 expiredate = ((DateTime)logedinUser.TokenDate).AddHours(1)
