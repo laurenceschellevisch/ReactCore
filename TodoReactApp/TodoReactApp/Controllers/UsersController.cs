@@ -4,7 +4,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.CodeAnalysis.CSharp.Syntax;
 using TodoReactApp.Models;
 using TodoReactApp.Controllers.Helpers;
 
@@ -34,9 +33,7 @@ namespace TodoReactApp.Controllers
         [HttpPost("refreshAccessToken")]
         public async Task<IActionResult> RefreshAccessToken([FromBody] refreshAccessTokenDto refreshTokenDto)
         {
-            User loggedinUser = (_context.Users.FirstOrDefault(e => e.RefreshToken == refreshTokenDto.RefreshToken));
-            if (loggedinUser == null)
-                return StatusCode(401, "not exist");
+            User loggedinUser = (_context.Users.First(e => e.RefreshToken == refreshTokenDto.RefreshToken));
             if (loggedinUser.TokenDate < DateTime.Now.AddHours(1) && loggedinUser.RefreshToken == refreshTokenDto.RefreshToken)
             {
                 Authenticator auth = new Authenticator();
