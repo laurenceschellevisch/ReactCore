@@ -35,7 +35,7 @@ namespace TodoReactApp
 
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new Info { Title = "Customer Portal API", Version = "v1" });
+                c.SwaggerDoc("v1", new Info { Title = "TodoReactApp", Version = "v1" });
                 var filePath = Path.Combine(PlatformServices.Default.Application.ApplicationBasePath, "TodoReactApp.xml");
                 c.IncludeXmlComments(filePath);
                 c.CustomSchemaIds(x =>

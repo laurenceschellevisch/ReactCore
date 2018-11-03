@@ -21,121 +21,86 @@ namespace TodoReactApp.Controllers
         }
 
 
-        [HttpGet("Gettodo")]
-        public async Task<IActionResult> Gettodos(string email)
+        [HttpGet("Gettodos/{email}")]
+        public async Task<IActionResult> Gettodos([FromRoute] string email)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
             if (string.IsNullOrEmpty(email))
-                return BadRequest();
+                return BadRequest("email empty");
 
             User loggedinuser = (_context.Users.FirstOrDefault(x => x.Email == email));
-           // var UserInfo = from u in _context.Todos where u.IdUser == loggedinuser.Id select u;
-            var UserInfo = (_context.Todos.Where(x => x.IdUser == loggedinuser.Id)).Select(x => new {x.Description,x.Id}).ToList();
-            return Ok(new {a=UserInfo});
+            var todosList = (_context.Todos.Where(x => x.IdUser == loggedinuser.Id)).Select(x => new {x.Description,x.Id}).ToList();
+            return Ok(todosList);
 
         }
 
-        // GET: api/Todoes
-        [HttpGet]
-        public IEnumerable<Todo> GetTodos()
-        {
-            return _context.Todos;
-        }
-
-        // GET: api/Todoes/5
-        [HttpGet("{id}")]
-        public async Task<IActionResult> GetTodo([FromRoute] int id)
+        [HttpPost("Edittodo")]
+        public async Task<IActionResult> EditTodo([FromBody] TodoEditDTO info)
         {
             if (!ModelState.IsValid)
-            {
                 return BadRequest(ModelState);
-            }
+            if (string.IsNullOrEmpty(info.ToString()))
+                return BadRequest("Id invalid");
 
-            var todo = await _context.Todos.FindAsync(id);
+            Todo todosList = (_context.Todos.FirstOrDefault(x => x.Id == info.Id));
+            todosList.IdUser = _context.Users.FirstOrDefault(x => x.Email == info.Email).Id;
+            todosList.Id = info.Id;
+            todosList.Description = info.TodoDesc;
+            _context.SaveChanges();
+            return Ok("sucess");
 
-            if (todo == null)
-            {
-                return NotFound();
-            }
-
-            return Ok(todo);
         }
-
-        // PUT: api/Todoes/5
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutTodo([FromRoute] int id, [FromBody] Todo todo)
+        [HttpPost("Deletetodo")]
+        public async Task<IActionResult> Deletetodo([FromBody] DeletetodoDTO info)
         {
             if (!ModelState.IsValid)
-            {
                 return BadRequest(ModelState);
-            }
-
-            if (id != todo.Id)
+            if (string.IsNullOrEmpty(info.ToString()))
+                return BadRequest("Id invalid");
+            if (!String.IsNullOrEmpty(_context.Users.First(x => x.Email == info.email).ToString()))
             {
-                return BadRequest();
+                _context.Todos.Remove(_context.Todos.FirstOrDefault(x => x.Id == info.id));
+                _context.SaveChanges();
+                return Ok("sucess");
+
             }
 
-            _context.Entry(todo).State = EntityState.Modified;
+            return BadRequest("wrong data");
 
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!TodoExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return NoContent();
         }
 
-        // POST: api/Todoes
-        [HttpPost]
-        public async Task<IActionResult> PostTodo([FromBody] Todo todo)
+        [HttpPost("addtodo")]
+        public async Task<IActionResult> AddTodo([FromBody] TodoInsertDTO info)
         {
             if (!ModelState.IsValid)
-            {
                 return BadRequest(ModelState);
-            }
+            if (string.IsNullOrEmpty(info.ToString()))
+                return BadRequest("Id invalid");
 
-            _context.Todos.Add(todo);
-            await _context.SaveChangesAsync();
+            _context.Todos.Add(new Todo()
+            {
+                IdUser = _context.Users.FirstOrDefault(x => x.Email == info.Email).Id,
+                Description = info.TodoDesc
+                
+            });
+            _context.SaveChanges();
+            return Ok("Sucess");
 
-            return CreatedAtAction("GetTodo", new { id = todo.Id }, todo);
         }
 
-        // DELETE: api/Todoes/5
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteTodo([FromRoute] int id)
+        [HttpGet("gettodo/{id}")]
+        public async Task<IActionResult> Getsingletodo([FromRoute] int id)
         {
             if (!ModelState.IsValid)
-            {
                 return BadRequest(ModelState);
-            }
+            if (string.IsNullOrEmpty(id.ToString()))
+                return BadRequest("InvalidId");
 
-            var todo = await _context.Todos.FindAsync(id);
-            if (todo == null)
-            {
-                return NotFound();
-            }
+            var todosList = (_context.Todos.Where(x => x.Id == id).Select(x => new { x.Description,x.Id}));
 
-            _context.Todos.Remove(todo);
-            await _context.SaveChangesAsync();
+            return Ok(todosList);
 
-            return Ok(todo);
-        }
-
-        private bool TodoExists(int id)
-        {
-            return _context.Todos.Any(e => e.Id == id);
         }
     }
 }

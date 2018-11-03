@@ -13,4 +13,21 @@ namespace TodoReactApp.Models
         [ForeignKey("IdUser")] public User User { get; set; }
 
     }
+    public class TodoInsertDTO
+    {
+        public string Email { get; set; }
+        public string TodoDesc { get; set; }
+    }
+    public class DeletetodoDTO
+    {
+        public int id { get; set; }
+        public string email { get; set; }
+    }
+    public class TodoEditDTO
+    {
+        public string Email { get; set; }
+        public int Id { get; set; }
+        public string TodoDesc { get; set; }
+    }
+
 }
