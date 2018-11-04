@@ -30,6 +30,7 @@ class Login extends React.Component {
 		this.Login(this.state);
 	};
 
+	// the data is checked in the backend en met success word je geredirectm
 	Login(dataFromState) {
 		var ajax = axios({
 			method: "post",
@@ -56,7 +57,7 @@ class Login extends React.Component {
 				if (error.response && error.response.data) {
 					NotificationManager.error(error.response.data, "Error");
 				} else {
-					NotificationManager.error("there is an server error, please try again later!", "Title here");
+					NotificationManager.error("there is an server error, please try again later!", "Error");
 				}
 				this.setState({ redirect: false });
 			});

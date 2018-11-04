@@ -4,6 +4,41 @@
         <name>TodoReactApp</name>
     </assembly>
     <members>
+        <member name="M:TodoReactApp.Controllers.TodoesController.Gettodos(System.String)">
+            <summary>
+            gets the todos by email for the spesific user
+            </summary>
+            <param name="email"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TodoReactApp.Controllers.TodoesController.EditTodo(TodoReactApp.Models.TodoEditDTO)">
+            <summary>
+            edits the todo in the database with the given data
+            </summary>
+            <param name="info"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TodoReactApp.Controllers.TodoesController.Deletetodo(TodoReactApp.Models.DeletetodoDTO)">
+            <summary>
+            deletes the todo and verifies that you are the owner
+            </summary>
+            <param name="info"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TodoReactApp.Controllers.TodoesController.AddTodo(TodoReactApp.Models.TodoInsertDTO)">
+            <summary>
+            adds a  todo with the given data
+            </summary>
+            <param name="info"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TodoReactApp.Controllers.TodoesController.Getsingletodo(System.Int32)">
+            <summary>
+            gets a single todo by id to edit it
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
         <member name="M:TodoReactApp.Controllers.Helpers.Authenticator.AuthenticateUser(System.String,TodoReactApp.Models.TodoContext)">
             <summary>
                 authenticates user with a token that is connected with the login email
@@ -30,7 +65,7 @@
         </member>
         <member name="M:TodoReactApp.Controllers.Helpers.Register.RegisterUser(TodoReactApp.Models.UserInsertDto,TodoReactApp.Models.TodoContext)">
             <summary>
-            registers user after all checks are done
+            registers user after all checks are done and hashed the password
             </summary>
             <param name="users"></param>
             <param name="_context"></param>

@@ -6,11 +6,13 @@ const PrivateRoute = ({ component: Component, role, logout, parameter, ...rest }
 	<Route
 		{...rest}
 		render={props => {
+			//checks if you are logging out
 			if (!Auth.isLoggedIn(logout)) {
 				return <Redirect to={{ pathname: "/login", state: { from: props.location } }} />;
 			}
 
 			if (JSON.parse(localStorage.getItem("authenticationData")) && Date.now() > Date.parse(JSON.parse(localStorage.getItem("authenticationData")).expiredate)) {
+				// checks if you are still verified to login
 				if (
 					axios({
 						method: "post",
@@ -41,11 +43,11 @@ const PrivateRoute = ({ component: Component, role, logout, parameter, ...rest }
 				JSON.parse(localStorage.getItem("authenticationData")).email &&
 				JSON.parse(localStorage.getItem("authenticationData")).token &&
 				JSON.parse(localStorage.getItem("authenticationData")).refreshtoken &&
-				JSON.parse(localStorage.getItem("authenticationData")).expiredate &&
-				Date.now() < Date.parse(JSON.parse(localStorage.getItem("authenticationData")).expiredate)
+				Date.now() < Date.parse(JSON.parse(localStorage.getItem("authenticationData")).expiredate) //checks if the localstorage is filled
 			) {
 				return <Component {...props} />;
 			} else {
+				// else redirects to the login page
 				localStorage.clear();
 				sessionStorage.clear();
 				alert("uw sessie is verlopen!");

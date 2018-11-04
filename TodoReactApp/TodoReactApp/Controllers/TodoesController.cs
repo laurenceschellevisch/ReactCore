@@ -20,7 +20,11 @@ namespace TodoReactApp.Controllers
             _context = context;
         }
 
-
+        /// <summary>
+        /// gets the todos by email for the spesific user
+        /// </summary>
+        /// <param name="email"></param>
+        /// <returns></returns>
         [HttpGet("Gettodos/{email}")]
         public async Task<IActionResult> Gettodos([FromRoute] string email)
         {
@@ -35,6 +39,11 @@ namespace TodoReactApp.Controllers
 
         }
 
+        /// <summary>
+        /// edits the todo in the database with the given data
+        /// </summary>
+        /// <param name="info"></param>
+        /// <returns></returns>
         [HttpPost("Edittodo")]
         public async Task<IActionResult> EditTodo([FromBody] TodoEditDTO info)
         {
@@ -51,6 +60,12 @@ namespace TodoReactApp.Controllers
             return Ok("sucess");
 
         }
+
+        /// <summary>
+        /// deletes the todo and verifies that you are the owner
+        /// </summary>
+        /// <param name="info"></param>
+        /// <returns></returns>
         [HttpPost("Deletetodo")]
         public async Task<IActionResult> Deletetodo([FromBody] DeletetodoDTO info)
         {
@@ -70,6 +85,11 @@ namespace TodoReactApp.Controllers
 
         }
 
+        /// <summary>
+        /// adds a  todo with the given data
+        /// </summary>
+        /// <param name="info"></param>
+        /// <returns></returns>
         [HttpPost("addtodo")]
         public async Task<IActionResult> AddTodo([FromBody] TodoInsertDTO info)
         {
@@ -89,6 +109,12 @@ namespace TodoReactApp.Controllers
 
         }
 
+
+        /// <summary>
+        /// gets a single todo by id to edit it
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpGet("gettodo/{id}")]
         public async Task<IActionResult> Getsingletodo([FromRoute] int id)
         {

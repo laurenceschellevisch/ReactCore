@@ -21,11 +21,11 @@ class App extends Component {
 				<BrowserRouter>
 					<Switch>
 						{/* authentication pages */}
-						<Route path="" component={Login} />
+						<Route exact path="/" component={Login} />
 						<Route exact path="/login" component={Login} />
 						<Route exact path="/register" render={props => <Register {...props} />} />
 						<PrivateRoute logout="true" path="/logout" component={Login} />
-						<PrivateRoute exact path="/Home" component={Home} />
+						<PrivateRoute path="/Home" component={Home} />
 						<PrivateRoute exact path="/addtodo" component={Addtodo} />
 						<PrivateRoute exact path="/edittodo" component={Edittodo} />} />
 						<Route render={props => <h1>Not Found</h1>} />

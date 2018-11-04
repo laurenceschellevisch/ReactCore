@@ -1,5 +1,7 @@
-import { React, axios, config } from "../Helpers/ImportHelper";
+import { React, axios, config, NotificationManager } from "../Helpers/ImportHelper";
+
 import { Button, Checkbox, Form, Grid, Segment, Dropdown } from "semantic-ui-react";
+import { Redirect } from "react-router-dom";
 
 class Register extends React.Component {
 	constructor(props) {
@@ -9,7 +11,8 @@ class Register extends React.Component {
 			LastName: "",
 			Email: "",
 			password: "",
-			password2: ""
+			password2: "",
+			redirect: false
 		};
 
 		// this.handleInputChange = this.handleInputChange.bind(this);
@@ -30,6 +33,7 @@ class Register extends React.Component {
 		}
 	};
 	ajax(state) {
+		// registers the user in the api that pushes the data to the database
 		axios({
 			method: "POST",
 			url: config.apiUrl + "Users/register",
@@ -46,38 +50,27 @@ class Register extends React.Component {
 			}
 		})
 			.then(response => {
-				console.log(response);
-			})
-			.catch(error => {});
-	}
-	PostTest = () => {
-		console.log(this.state);
-		axios({
-			method: "POST",
-			url: config.apiUrl + "Users/register",
-			data: {
-				firstName: this.state.FirstName,
-				lastName: this.state.LastName,
-				email: this.state.email,
-				pass: this.state.password
-			},
-			withCredentials: true,
-			headers: {
-				"Access-Control-Allow-Origin": "*",
-				"Content-Type": "application/json"
-			}
-		})
-			.then(response => {
+				NotificationManager.success("sucessfull", "Sucess");
+
+				this.setState({ redirect: true });
 				console.log(response);
 			})
 			.catch(error => {
 				console.log(error);
+				NotificationManager.error(error.response.data, "Error");
+				this.setState({ redirect: false });
 			});
+	}
+	renderRedirect = () => {
+		if (this.state.redirect) {
+			return <Redirect to="/login" />;
+		}
 	};
 
 	render() {
 		return (
 			<Grid columns={3}>
+				{this.renderRedirect()}
 				<Grid.Row>
 					<Grid.Column />
 					<Grid.Column>

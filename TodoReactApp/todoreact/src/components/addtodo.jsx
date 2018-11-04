@@ -1,4 +1,5 @@
-import { React, axios, config } from "../Helpers/ImportHelper";
+import { React, axios, config, NotificationManager } from "../Helpers/ImportHelper";
+
 import { Button, Form, Grid, Header, Image, Message, Segment, Icon, Label, Menu, Table, TextArea } from "semantic-ui-react";
 import { Redirect } from "react-router-dom";
 import FixedMenuLayout from "../components/layout";
@@ -17,6 +18,7 @@ class Addtodo extends React.Component {
 		});
 	};
 	handleSubmit = () => {
+		//see api documentation
 		var ajax = axios({
 			method: "post",
 			url: config.apiUrl + "todoes/addtodo",
@@ -37,6 +39,7 @@ class Addtodo extends React.Component {
 				return error;
 			});
 		ajax.then(response => {
+			NotificationManager.success("sucessfull", "Sucess");
 			this.setState({ redirect: true });
 		});
 	};

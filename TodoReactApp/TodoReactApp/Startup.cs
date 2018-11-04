@@ -88,6 +88,7 @@ namespace TodoReactApp
                 context.Database.Migrate();
             }
 
+
             app.UseHttpsRedirection();
             app.UseAuthentication();
 

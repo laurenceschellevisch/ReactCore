@@ -17,6 +17,7 @@ class Home extends React.Component {
 		this.onClick = this.handleClick.bind(this);
 	}
 	componentDidMount = () => {
+		//get the todo do display in the homescreen
 		var ajax = axios({
 			method: "get",
 			url: config.apiUrl + "todoes/Gettodos/" + JSON.parse(localStorage.getItem("authenticationData")).email,
@@ -36,7 +37,7 @@ class Home extends React.Component {
 		ajax.then(data => {
 			console.log(data);
 			this.setState({
-				todos: data
+				todos: data //puts the todo data in the state
 			});
 		});
 	};
@@ -52,7 +53,6 @@ class Home extends React.Component {
 	};
 	redirectEdit = () => {
 		if (this.state.edittodo) {
-			alert(this.state.id);
 			return <Redirect to={{ pathname: "/edittodo", state: { id: this.state.id } }} />;
 		}
 	};
@@ -73,6 +73,7 @@ class Home extends React.Component {
 						</Table.Header>
 						{this.state.todos.map(todo => {
 							return (
+								//loops tododata from the state
 								<Todos
 									id={todo["id"]}
 									description={todo["description"]}

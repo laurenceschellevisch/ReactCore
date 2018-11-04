@@ -42,7 +42,7 @@ namespace TodoReactApp.Controllers.Helpers
         }
 
         /// <summary>
-        /// registers user after all checks are done
+        /// registers user after all checks are done and hashed the password
         /// </summary>
         /// <param name="users"></param>
         /// <param name="_context"></param>

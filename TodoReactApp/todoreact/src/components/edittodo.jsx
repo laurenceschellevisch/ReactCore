@@ -13,9 +13,10 @@ class Edittodo extends React.Component {
 		};
 	}
 	componentDidMount = () => {
+		//see api documentation
 		var ajax = axios({
 			method: "get",
-			url: config.apiUrl + "todoes/gettodo/" + this.props.location.state.id,
+			url: config.apiUrl + "Todoes/gettodo/" + this.props.location.state.id,
 			data: {},
 			withCredentials: true,
 			headers: {
@@ -24,6 +25,7 @@ class Edittodo extends React.Component {
 			}
 		})
 			.then(response => {
+				console.log(response);
 				return response.data;
 			})
 			.catch(error => {
@@ -33,6 +35,8 @@ class Edittodo extends React.Component {
 			this.setState({
 				todo: data[0].description
 			});
+		}).catch(response => {
+			alert(response);
 		});
 	};
 
@@ -63,6 +67,7 @@ class Edittodo extends React.Component {
 				return error;
 			});
 		ajax.then(response => {
+			//checks if the data is updated and then get redirected
 			this.setState({ redirect: true });
 		});
 	};
@@ -84,6 +89,7 @@ class Edittodo extends React.Component {
 									<Form onSubmit={this.handleSubmit}>
 										<Form.Field>
 											<TextArea placeholder="Todo" label="Todo Description:" required name="todo" value={this.state.todo} onChange={this.handleInputChange} />
+											{/* here  */}
 										</Form.Field>
 										<Button type="submit">Submit</Button>
 									</Form>

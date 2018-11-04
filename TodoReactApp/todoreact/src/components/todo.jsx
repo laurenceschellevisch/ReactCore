@@ -10,6 +10,7 @@ class Todos extends React.Component {
 	}
 
 	handleClick = e => {
+		//if the delete button on the single task is called we get the id to delete the todo from the event
 		if (e.target.name == "delete") {
 			var ajax = axios({
 				method: "post",
@@ -32,11 +33,13 @@ class Todos extends React.Component {
 					return error;
 				});
 		} else {
-			this.props.onClick(e.target.name);
+			//else the onclick method to edit is called back at the
+			this.props.onClick(e.target.id);
 		}
 	};
 	render = () => {
 		return (
+			//called when looping the todo data
 			<Table.Row>
 				<Table.Cell>
 					<Label>{this.props.id}</Label>
